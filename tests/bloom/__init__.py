@@ -1,0 +1,4 @@
+from .test_bitsperelement import TestBloomBitsPerElement
+from .test_hashfunctions import TestBloomHashFunctions
+from .test_hashperformance import TestBloomHashPerformance
+from .test_membershipemq import TestBloomMembershipEMQ

@@ -1,6 +1,7 @@
 # CS4411 Project Team 4
 # Evaluating the Performance of Approximate Membership Queries
 
+import math
 import mmh3
 
 from BitVector import BitVector
@@ -70,3 +71,19 @@ class BloomFilter(BaseFilter):
         """Returns a string representation of the Bloom filter."""
 
         return f"<Bloom Filter: m={self.m,}, k={self.k,}, n={self.n,}>"
+
+    @staticmethod
+    def bits_per_item(p: float) -> float:
+        """Returns the optimal bits per item for the given false positive probability."""
+
+        return -(math.log2(p) / math.log(2))
+
+    @staticmethod
+    def k_hash_functions(p: float) -> int:
+        """Returns the optimal number of hash functions for the given false positive probability."""
+
+        return -math.log2(p)
+
+    @classmethod
+    def from_target_fpp(cls, n: int, p: float):
+        return cls(int(n * BloomFilter.bits_per_item(p)), math.ceil(BloomFilter.k_hash_functions(0.01)))

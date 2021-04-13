@@ -1,0 +1,2 @@
+tests/data/*.txt filter=lfs diff=lfs merge=lfs -text
+tests/data/*.db filter=lfs diff=lfs merge=lfs -text
